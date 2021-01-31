@@ -1,5 +1,5 @@
 MODEL_NAME = 'clf_heart_disease.sav'
-MODEL_PATH = 'trained-model/'+ MODEL_NAME
+MODEL_PATH = 'app/trained-model/'+ MODEL_NAME
 
 
 
