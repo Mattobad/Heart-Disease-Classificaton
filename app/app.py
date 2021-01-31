@@ -51,7 +51,7 @@ def predict():
             loaded_model = load(MODEL_PATH)
             logger.info('model is loaded...')
             df = pd.DataFrame.from_dict([json_data])
-            logger.info(f' columns: {df.columns}',file=sys.stderr)
+            logger.info(f'columns: {df.columns}')
             preds = loaded_model.predict(df)
             logger.info(f'predicted value: {preds[0]}')
             return jsonify({'prediction':preds[0]*1.0}),200
