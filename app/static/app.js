@@ -81,7 +81,7 @@ function onClickedPredict(){
 
 
 
-    var url = "http://127.0.0.1:5000/v1/model/predict"
+    var url = "https://secret-mountain-51577.herokuapp.com/v1/model/predict"
 
      // POST
      fetch(url, {
