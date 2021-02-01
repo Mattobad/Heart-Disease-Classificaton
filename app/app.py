@@ -1,4 +1,5 @@
-from flask import Flask, jsonify, request
+from flask import Flask, jsonify, request,render_template
+from flask_cors import CORS
 
 from joblib import load
 
@@ -28,14 +29,14 @@ stream_handler.setFormatter(formatter)
 logger.addHandler(stream_handler)
 
 app = Flask(__name__)
-
+CORS(app)
 
 """Routes"""
 @app.route('/')
 def index():
 
     # return jsonify({'results':'ok'}),200
-    return "Welcome!"
+    return render_template('index.html'),200
 
 
 @app.route('/v1/model/predict',methods=['POST'])
@@ -50,15 +51,28 @@ def predict():
         try:
             loaded_model = load(MODEL_PATH)
             logger.info('model is loaded...')
+        except:
+            logger.exception('Error in loading model!!')
+
+        try:
             df = pd.DataFrame.from_dict([json_data])
             logger.info(f'columns: {df.columns}')
-            preds = loaded_model.predict(df)
-            logger.info(f'predicted value: {preds[0]}')
-            return jsonify({'prediction':preds[0]*1.0}),200
+
         except:
-            logger.exception('Error in getting the result!!')
+            logger.exception('Error in converting into dataFrame')
+
+        preds = loaded_model.predict(df)
+        logger.info(f'predicted value: {preds[0]}')
+        if preds==1:
+            result = 'True'
+        else:
+            result = 'False'
+        # converting to float as INT value is not json serializable
+        return jsonify({'prediction':result}),200
+
+
 
         
 
 if __name__ == '__main__':
-    app.run(host='0.0.0.0',debug=True)
+    app.run(debug=True)

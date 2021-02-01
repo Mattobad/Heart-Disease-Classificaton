@@ -1,0 +1,194 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Heart-Disease-Classificaton</title>
+
+    <!-- <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script> -->
+    <!-- custom css -->
+    <link rel="stylesheet" href="../static/style.css">
+    <!-- custom js -->
+    <script src="../static/app.js"></script>
+
+</head>
+<body>
+
+    <nav class="navbar navbar-inverse">
+		<div class="container-fluid">
+		  <div class="navbar-header">
+			<a class="navbar-brand" href="index.html"></a>
+		  </div>
+		  <ul class="nav navbar-nav">
+			<li class="active"><a href="https://sarbottamthapamagar.com/">Portfolio Website</a></li>
+			<!-- <li><a href="prediction.html">Prediction model</a></li> -->
+			<!-- <li><a href="#">Page 2</a></li>
+			<li><a href="#">Page 3</a></li> -->
+		  </ul>
+		</div>
+	</nav> <!-- Navbar -->
+
+    <h3>Heart Disease Classification</h3>
+    <p>Machine Learning model to predict if there is any possibility heart 
+        disease based on patient medical history.  </p>
+        <p>Note: This project is build as a show-case for the implementation of Full-stack Data science project. 
+            The model is not meant for any practical use-case scenario.
+        </p>
+    
+    <div>
+        <div class="container">
+            <form id='form' method="post">
+              <div class="row">
+                <div class="col-25">
+                  <label for="age">Age</label>
+                </div>
+                <div class="col-75">
+                  <input type="text" id="age" name="age" placeholder="Age">
+                </div>
+              </div> <!-- div age -->
+              <div class="row">
+                <div class="col-25">
+                  <label for="sex">Gender</label>
+                </div>
+                <div class="col-75">
+                    <input type="radio" id="rbtn-sex-1" name="sex" value="0"/>
+                    <label for="rbtn-sex-1">Female</label>
+                    <input type="radio" id="rbtn-sex-2" name="sex" value="1" />
+                    <label for="rbtn-sex-2">Male</label>
+                </div>
+              </div><!-- div sex -->
+              <div class="row">
+                <div class="col-25">
+                  <label for="cp">Chest pain type(4 types)</label>
+                </div>
+                <div class="col-75">
+                  <select id="cp" name="cp">
+                    <option value="0">Type 1</option>
+                    <option value="1">Type 2</option>
+                    <option value="2">Type 3</option>
+                    <option value="3">Type 4</option>
+                  </select>
+                </div>
+              </div><!-- div cp -->
+              <div class="row">
+                <div class="col-25">
+                  <label for="trestbps">Resting blood pressure(bps)</label>
+                </div>
+                <div class="col-75">
+                  <input type="text" id="trestbps" name="trestbps" placeholder="120">
+                </div>
+              </div><!-- div trestbps -->
+              <div class="row">
+                <div class="col-25">
+                  <label for="chol">Cholestoral(mg/dl)</label>
+                </div>
+                <div class="col-75">
+                    <input type="radio" id="rbtn-chol-1" name="chol" value="0"/>
+                    <label for="rbtn-chol-1">No</label>
+                    <input type="radio" id="rbtn-chol-2" name="chol" value="1" />
+                    <label for="rbtn-chol-2">Yes</label>
+                </div>
+              </div><!-- div chol -->
+              <div class="row">
+                <div class="col-25">
+                  <label for="fbs">Fasting blood sugar > 120 mg/dl</label>
+                </div>
+                <div class="col-75">
+                  <input type="text" id="fbs" name="fbs" placeholder="150">
+                </div>
+              </div><!-- div fbs -->
+              <div class="row">
+                <div class="col-25">
+                  <label for="restecg">Resting electrocardiographic results (values 0,1,2)</label>
+                </div>
+                <div class="col-75">
+                    <input type="radio" id="rbtn-restecg-1" name="restecg" value="0"/>
+                    <label for="rbtn-restecg-1">0</label>
+                    <input type="radio" id="rbtn-restecg-2" name="restecg" value="1" />
+                    <label for="rbtn-restecg-2">1</label>
+                    <input type="radio" id="rbtn-restecg-3" name="restecg" value="2" />
+                    <label for="rbtn-restecg-3">2</label>
+                </div>
+              </div><!-- div restecg  -->
+              <div class="row">
+                <div class="col-25">
+                  <label for="thalach">Maximum heart rate achieved(bps)</label>
+                </div>
+                <div class="col-75">
+                  <input type="text" id="thalach" name="thalach" placeholder="150">
+                </div>
+              </div><!-- div thalach -->
+              <div class="row">
+                <div class="col-25">
+                  <label for="exang">Exercise induced angina</label>
+                </div>
+                <div class="col-75">
+                    <input type="radio" id="rbtn-exang-1" name="exang" value="0"/>
+                    <label for="rbtn-exang-1">0</label>
+                    <input type="radio" id="rbtn-exang-2" name="exang" value="1" />
+                    <label for="rbtn-exang-2">1</label>
+                </div>
+              </div><!-- div exang -->
+              <div class="row">
+                <div class="col-25">
+                  <label for="oldpeak">Oldpeak</label>
+                </div>
+                <div class="col-75">
+                  <input type="text" id="oldpeak" name="oldpeak" placeholder="1.5 (=ST depression induced by exercise relative to rest)">
+                </div>
+              </div><!-- div oldpeak -->
+              <div class="row">
+                <div class="col-25">
+                  <label for="slope">Slope of the peak exercise ST segment</label>
+                </div>
+                <div class="col-75">
+                    <input type="radio" id="rbtn-slope-1" name="slope" value="0"/>
+                    <label for="rbtn-slope-1">0</label>
+                    <input type="radio" id="rbtn-slope-2" name="slope" value="1" />
+                    <label for="rbtn-slope-2">1</label>
+                    <input type="radio" id="rbtn-slope-3" name="slope" value="2" />
+                    <label for="rbtn-slope-3">2</label>
+                </div>
+              </div><!-- div slope -->
+
+              <div class="row">
+                <div class="col-25">
+                  <label for="ca">Number of major vessels (0-4) colored by flourosopy</label>
+                </div>
+                <div class="col-75">
+                    <input type="radio" id="rbtn-ca-1" name="ca" value="0"/>
+                    <label for="rbtn-ca-1">0</label>
+                    <input type="radio" id="rbtn-ca-2" name="ca" value="1" />
+                    <label for="rbtn-ca-2">1</label>
+                    <input type="radio" id="rbtn-ca-3" name="ca" value="3" />
+                    <label for="rbtn-ca-3">3</label>
+                    <input type="radio" id="rbtn-ca-4" name="ca" value="4" />
+                    <label for="rbtn-ca-4">4</label>
+                </div>
+              </div><!-- div ca -->
+              <div class="row">
+                <div class="col-25">
+                  <label for="thal">Thalassemia</label>
+                </div>
+                <div class="col-75">
+                  <input type="text" id="thal" name="thal" placeholder="3">
+                </div>
+              </div><!-- div thal -->
+              <div class="row">
+                <button class="submit" onclick="onClickedPredict()" type="button">Predict</button>
+              </div><!-- div submit -->
+            </form>
+            <div id="clf_prediction" class="result"> <h4></h4></div>
+          </div><!-- div container -->
+    <br><br>
+    
+    <br><br><br>
+    <br><br><br>
+    <a href="https://github.com/Mattobad/Heart-Disease-Classificaton">GitHub repo link.</a><br>
+    <a href="https://www.kaggle.com/ronitf/heart-disease-uci">Link to dataset used for training the model.</a><br><br>
+
+</body>
+</html>
