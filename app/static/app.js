@@ -108,3 +108,16 @@ function onClickedPredict(){
         predictPrice.innerHTML = "<h4>Presence of heart disease: " + json.prediction + "</h4>";
     });  
 }
+
+function onPageLoad(){
+    
+    var url = "https://secret-mountain-51577.herokuapp.com/";
+
+    $.get(url, function(response,status){
+        console.log(status);
+        console.log(response.title)
+    });
+}
+
+
+window.onload = onPageLoad;

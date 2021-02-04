@@ -43,7 +43,7 @@
     display: inline-block;
   }
   
-  input[type=submit] {
+  button[type=button] {
     background-color:#6fb1ee;
     color: white;
     padding: 12px 20px;
